@@ -12,17 +12,22 @@ data class Result<out T>(
         }
 
         fun <T> error(data: T?, responseCode: Int?): Result<T> {
-            return Result(STATUS.ERROR, null, responseCode)
+            return Result(STATUS.ERROR, data, responseCode)
         }
 
         fun <T> loading(data: T?): Result<T> {
             return Result(STATUS.LOADING, data, null)
+        }
+
+        fun <T> empty(): Result<T> {
+            return Result(STATUS.EMPTY, null, null)
         }
     }
 
     enum class STATUS {
         SUCCESS,
         ERROR,
-        LOADING
+        LOADING,
+        EMPTY
     }
 }
