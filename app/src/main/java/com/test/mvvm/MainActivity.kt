@@ -10,12 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.test.mvvm.data.Result
-import com.test.mvvm.data.RetrofitBuilder
-import com.test.mvvm.data.repository.CatFactRepository
 import com.test.mvvm.databinding.ActivityMainBinding
 import com.test.mvvm.presentation.main.fact.CatFactViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.btnGetCatFact.setOnClickListener {
-            viewmodel.getCatFact(CatFactRepository(), RetrofitBuilder.apiService)
+            viewmodel.getCatFact()
         }
     }
 }
