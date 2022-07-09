@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class CatFactRepository: CatFactRepositoryImpl, DataProvider() {
+class CatFactRepository(private val apiService: ApiService): CatFactRepositoryImpl, DataProvider() {
 
-    override suspend fun getCatFact(apiService: ApiService): Flow<Result<CatFactModel>> {
+    override suspend fun getCatFact(): Flow<Result<CatFactModel>> {
         return flow {
             emit(Result.loading(null))
             val result = getResponse { apiService.getCatFact() }
