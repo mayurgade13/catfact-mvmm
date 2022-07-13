@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.test.mvvm.data.Result
 import com.test.mvvm.data.model.CatFactModel
-import com.test.mvvm.data.repository.CatFactRepository
+import com.test.mvvm.data.repository.CatFactRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CatFactViewModel @Inject constructor(
-    private val catFactRepository: CatFactRepository
+    private val catFactRepositoryImpl: CatFactRepositoryImpl
 ): ViewModel() {
 
     private val _catFactState: MutableStateFlow<Result<CatFactModel>> = MutableStateFlow(Result.empty())
@@ -25,7 +25,7 @@ class CatFactViewModel @Inject constructor(
 
     fun getCatFact() {
         viewModelScope.launch {
-            catFactRepository.getCatFact().collect { result ->
+            catFactRepositoryImpl.getCatFact().collect { result ->
                 _catFactState.value = result
 //                _catFactState.emit(result)
             }
