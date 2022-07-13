@@ -16,6 +16,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'BASE_URL', "\"https://catfact.ninja\""
     }
 
     buildTypes {
@@ -57,4 +59,7 @@ dependencies {
     //Hilt-Dagger
     implementation 'com.google.dagger:hilt-android:2.42'
     kapt 'com.google.dagger:hilt-compiler:2.42'
+
+    // Logging interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 }
