@@ -1,8 +1,9 @@
 package com.test.mvvm
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
@@ -37,7 +38,11 @@ class MainActivity : AppCompatActivity() {
                         }
                         Result.STATUS.ERROR -> {
                             binding.loadingView.visibility = View.GONE
-                            Toast.makeText(this@MainActivity, "Some thing went wrong", Toast.LENGTH_SHORT).show()
+                            // Temporary showing alert
+                            val alert = AlertDialog.Builder(this@MainActivity)
+                            alert.setTitle(getString(R.string.error_something_went_wrong))
+                            alert.setPositiveButton(R.string.button_ok) { _: DialogInterface?, _: Int -> }
+                            alert.show()
                         }
                         Result.STATUS.LOADING -> {
                             binding.loadingView.visibility = View.VISIBLE
